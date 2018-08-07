@@ -11,6 +11,7 @@ public class Controller : MonoBehaviour {
 	public float CONST_SPEED = 10f;
 	public float MAX_WEIGHT = 10f;
 	public float CONST_JUMP = 20f;
+	private  DivingSystem divingSystem;
 
 	private Vector3 rotation;
 	private int numDeath;
@@ -26,6 +27,7 @@ public class Controller : MonoBehaviour {
 	void Start () {
 		Cursor.lockState = wantedMode;
 		this.speed = this.CONST_SPEED;
+		this.divingSystem = this.GetComponent<DivingSystem>();
 	}
 	
 	void Update () {
@@ -79,13 +81,18 @@ public class Controller : MonoBehaviour {
 		// Jump
 		if (Input.GetKeyDown(KeyCode.Space)){
 			this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x, this.GetComponent<Rigidbody>().velocity.y + this.CONST_JUMP, this.GetComponent<Rigidbody>().velocity.z);
+
 		}
 	}
 
 	void checkCatchableObject() {
 		RaycastHit hit;
 		// If the raycast find an object with the tag catchatchable
-		if(Physics.Raycast(this.transform.position, this.transform.forward, out hit, 10f, 256)) {
+		if(Physics.Raycast(this.transform.position, this.transform.forward, out hit, 100f, 256)) {
+			Debug.Log(hit.transform.gameObject);
+			if(hit.transform.gameObject.tag == "Lader") {
+				
+			}
 			if(hit.transform.gameObject.tag == "Catchable") {
 				// Si on a pas d'objet dans les mains on le choppe poto
 				if(Input.GetKeyDown(KeyCode.E) && !this.hasObject) {
@@ -95,8 +102,15 @@ public class Controller : MonoBehaviour {
 					this.currentObject.transform.SetParent(this.transform);
 				}
 			}
+			if(hit.transform.gameObject.tag == "Lever") {
+				if(Input.GetKeyDown(KeyCode.A)) {
+					hit.transform.gameObject.GetComponent<Animator>().SetTrigger("isPulled");
+					this.divingSystem.launch();
+				}
+			}
 		}
 	}
+
 
 	void throwObject() {
 		this.currentObject.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x, this.transform.forward.y, this.transform.forward.z)*(this.MAX_WEIGHT - this.currentObject.weight);
