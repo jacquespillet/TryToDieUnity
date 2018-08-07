@@ -5,7 +5,7 @@ using UnityEngine;
 public class Book : Item {
 	// Use this for initialization
 	void Start () {
-		
+		this.initialScale = this.transform.localScale; 
 	}
 	
 	// Update is called once per frame
@@ -15,6 +15,6 @@ public class Book : Item {
 
 
 	public override void beUsed() {
-		Debug.Log("c'est moi la pioche");
+		Debug.Log("c'est moi le book");
 	}
 }

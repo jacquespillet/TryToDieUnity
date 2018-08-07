@@ -90,7 +90,6 @@ public class Controller : MonoBehaviour {
 				if(Input.GetKeyDown(KeyCode.E) && !this.hasObject) {
 					this.hasObject = true;
 					this.currentObject = hit.transform.gameObject.GetComponent<Item>();
-					this.currentObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 					this.speed = 0.75f * this.CONST_SPEED;
 					this.currentObject.transform.SetParent(this.transform);
 				}
