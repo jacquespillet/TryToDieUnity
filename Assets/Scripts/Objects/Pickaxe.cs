@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickaxe : Item {
-
 	// Use this for initialization
 	void Start () {
-		
+		this.weight = 5f;
 	}
 	
 	// Update is called once per frame
