@@ -6,6 +6,7 @@ public class Controller : MonoBehaviour {
 	// Test commit stan
 	// Mouse and keys
 	private float x, y;
+	public GameObject coffin;
 	public float MAX_FORWARD_Y = 0.80f;
 	public float CONST_SPEED = 10f;
 	public float MAX_WEIGHT = 10f;
@@ -119,6 +120,7 @@ public class Controller : MonoBehaviour {
 
 	public void die() {
 		this.numDeath++;
+		Instantiate(this.coffin, new Vector3(2.0f, 1f, 2.0f), Quaternion.identity);
 		this.transform.position = new Vector3(0f, 1f, 0f);
 	}
 }
