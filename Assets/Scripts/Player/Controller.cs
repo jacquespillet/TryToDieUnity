@@ -78,8 +78,9 @@ public class Controller : MonoBehaviour {
 				if(Input.GetKeyDown(KeyCode.E) && !this.hasObject) {
 					this.hasObject = true;
 					this.currentObject = hit.transform.gameObject.GetComponent<Item>();
-					// this.currentObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+					this.currentObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 					this.speed = 0.75f * this.CONST_SPEED;
+					this.currentObject.transform.SetParent(this.transform);
 				}
 			}
 		}
@@ -89,12 +90,11 @@ public class Controller : MonoBehaviour {
 
 		this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y,this.transform.forward.z) * 0.5f + this.transform.right * 0.2f;
 		this.currentObject.gameObject.transform.eulerAngles = 	this.currentObject.gameObject.transform.eulerAngles - this.rotation;
-		this.currentObject.transform.SetParent(this.transform);
 		this.currentObject.gameObject.transform.localEulerAngles = new Vector3(0f, 90f, 90f);
 
 		if(Input.GetKeyDown(KeyCode.E)) {
 			this.hasObject = false;
-			this.currentObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+			this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y + 0.3f,this.transform.forward.z) * 1.0f;
 			this.currentObject.transform.SetParent(null);
 			this.currentObject.transform.localEulerAngles =new Vector3(90f, 0f, 0f);
 			this.speed = this.CONST_SPEED;
