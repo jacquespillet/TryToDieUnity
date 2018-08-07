@@ -87,10 +87,11 @@ public class Controller : MonoBehaviour {
 	void checkCatchableObject() {
 		RaycastHit hit;
 		// If the raycast find an object with the tag catchatchable
-		if(Physics.Raycast(this.transform.position, this.transform.forward, out hit, 100f, 256)) {
+		if(Physics.Raycast(this.transform.position, this.transform.forward, out hit, 10f, 256)) {
 			Debug.Log(hit.transform.gameObject);
-			if(hit.transform.gameObject.tag == "Lader") {
-				
+			if(hit.transform.gameObject.tag == "Lader" && Input.GetAxis("Vertical") < 0) {
+				this.transform.GetComponent<Rigidbody>().velocity = new Vector3(0f, 2.5f, 0f);
+				//Mettre le collider de l'échelle trigger et garder l'autre collider
 			}
 			if(hit.transform.gameObject.tag == "Catchable") {
 				// Si on a pas d'objet dans les mains on le choppe poto
