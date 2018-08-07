@@ -9,7 +9,6 @@ public class Controller : MonoBehaviour {
 	public float MAX_FORWARD_Y = 0.80f;
 	public float CONST_SPEED = 3f;
 	public float CONST_JUMP = 3f;
-	public float CONST_MUSCLE = 10f;
 
 	private Vector3 rotation;
 	private int numDeath;
@@ -99,7 +98,7 @@ public class Controller : MonoBehaviour {
 	}
 
 	void throwObject() {
-		this.currentObject.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x, this.transform.forward.y, this.transform.forward.z)*this.CONST_MUSCLE;
+		this.currentObject.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x, this.transform.forward.y, this.transform.forward.z)*this.currentObject.weight;
 		releaseObject();
 	}
 
