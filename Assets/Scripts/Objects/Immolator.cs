@@ -31,10 +31,10 @@ public class Immolator : MonoBehaviour {
 		}			
 	}
 
-	void OnCollisionEnter(Collision other)
+	void OnTriggerEnter(Collider other)
 	{
-		Debug.Log(other.gameObject);
-		if(!other.gameObject.GetComponent<Book>().Equals(null)) {
+		Debug.Log(other);
+		if(other.gameObject.GetComponent<Book>() != null) {
 			this.counterExplosive++;
 			Destroy(other.gameObject);
 			this.timer = this.CONST_TIMER;
@@ -42,6 +42,8 @@ public class Immolator : MonoBehaviour {
 				ParticleSystem system = this.particles.transform.GetChild(i).GetComponent<ParticleSystem>();
 				system.startSize++;
 			}
+		} else if (other.gameObject.GetComponent<Controller>() != null) {
+			other.gameObject.GetComponent<Controller>().die();
 		}
 	}
 }

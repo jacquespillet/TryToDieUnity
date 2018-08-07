@@ -117,7 +117,7 @@ public class Controller : MonoBehaviour {
 		}
 	}
 
-	private void die() {
+	public void die() {
 		this.numDeath++;
 		this.transform.position = new Vector3(0f, 1f, 0f);
 	}
