@@ -6,7 +6,7 @@ public class Controller : MonoBehaviour {
 	// Test commit stan
 	// Mouse and keys
 	private float x, y;
-	public float MAX_FORWARD_Y = 0.90f;
+	public float MAX_FORWARD_Y = 0.80f;
 	public float CONST_SPEED = 3f;
 	public float CONST_JUMP = 3f;
 
@@ -50,9 +50,20 @@ public class Controller : MonoBehaviour {
 
 		// Object management
 		if(!this.hasObject) {
+			// Check if there's an object to catch
 			checkCatchableObject();
-		} else {	
-			checkReleaseObject();
+		} else {
+			// Make the current object follows the camera in a smoothie way
+			this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y,this.transform.forward.z) * 0.5f + this.transform.right * 0.2f;
+			this.currentObject.gameObject.transform.eulerAngles = 	this.currentObject.gameObject.transform.eulerAngles - this.rotation;
+			this.currentObject.gameObject.transform.localEulerAngles = new Vector3(0f, 90f, 90f);
+			if(Input.GetKeyDown(KeyCode.E)){
+				// Release the object if E is pressed
+				releaseObject();
+			} else if (Input.GetKeyDown(KeyCode.F)){
+				//Throw the object if F is pressed
+				throwObject();
+			}
 			if (Input.GetMouseButtonDown(0)) {
 				this.currentObject.beUsed();
 			}
@@ -71,10 +82,10 @@ public class Controller : MonoBehaviour {
 
 	void checkCatchableObject() {
 		RaycastHit hit;
-		Debug.DrawRay(this.transform.position, this.transform.forward * 2f, Color.green);
-		if(Physics.Raycast(this.transform.position, this.transform.forward * 2f, out hit,Mathf.Infinity, 256)) {
-			Debug.Log(hit.transform.gameObject.name);
-			if(hit.transform.gameObject.tag =="Catchable") {
+		// If the raycast find an object with the tag catchatchable
+		if(Physics.Raycast(this.transform.position, this.transform.forward, out hit, 10f, 256)) {
+			if(hit.transform.gameObject.tag == "Catchable") {
+				// Si on a pas d'objet dans les mains on le choppe poto
 				if(Input.GetKeyDown(KeyCode.E) && !this.hasObject) {
 					this.hasObject = true;
 					this.currentObject = hit.transform.gameObject.GetComponent<Item>();
@@ -86,20 +97,17 @@ public class Controller : MonoBehaviour {
 		}
 	}
 
-	void checkReleaseObject() {
+	void throwObject() {
+		this.currentObject.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x, this.transform.forward.y, this.transform.forward.z)*this.currentObject.weight;
+		releaseObject();
+	}
 
-		this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y,this.transform.forward.z) * 0.5f + this.transform.right * 0.2f;
-		this.currentObject.gameObject.transform.eulerAngles = 	this.currentObject.gameObject.transform.eulerAngles - this.rotation;
-		this.currentObject.gameObject.transform.localEulerAngles = new Vector3(0f, 90f, 90f);
-
-		if(Input.GetKeyDown(KeyCode.E)) {
-			this.hasObject = false;
-			this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y + 0.3f,this.transform.forward.z) * 1.0f;
-			this.currentObject.transform.SetParent(null);
-			this.currentObject.transform.localEulerAngles =new Vector3(90f, 0f, 0f);
-			this.speed = this.CONST_SPEED;
-			this.currentObject = null;
-		}
+	void releaseObject() {
+		this.hasObject = false;
+		this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y + 0.3f,this.transform.forward.z) * 1.0f;
+		this.currentObject.transform.SetParent(null);
+		this.speed = this.CONST_SPEED;
+		this.currentObject = null;
 	}
 
 	void OnCollisionEnter(Collision other)
