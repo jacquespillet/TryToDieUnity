@@ -45,6 +45,7 @@ public class Controller : MonoBehaviour {
 			this.transform.forward = new Vector3(this.transform.forward.x, MAX_FORWARD_Y, this.transform.forward.z);
 		} else if (this.transform.forward.y < -MAX_FORWARD_Y) {
 			this.transform.forward = new Vector3(this.transform.forward.x, -MAX_FORWARD_Y, this.transform.forward.z);
+
 		}
 
 		// Object management
