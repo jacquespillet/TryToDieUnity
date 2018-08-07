@@ -7,8 +7,9 @@ public class Controller : MonoBehaviour {
 	// Mouse and keys
 	private float x, y;
 	public float MAX_FORWARD_Y = 0.80f;
-	public float CONST_SPEED = 3f;
-	public float CONST_JUMP = 3f;
+	public float CONST_SPEED = 10f;
+	public float MAX_WEIGHT = 10f;
+	public float CONST_JUMP = 20f;
 
 	private Vector3 rotation;
 	private int numDeath;
@@ -27,12 +28,13 @@ public class Controller : MonoBehaviour {
 	}
 	
 	void Update () {
+		Debug.Log(this.speed);
 		// Get directionals pushed keys and move
 		float horizontaltranslation = Input.GetAxis("Horizontal");
 		float verticalTranslation =  -Input.GetAxis("Vertical");
 		
-		this.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x* verticalTranslation * speed, this.GetComponent<Rigidbody>().velocity.y, this.transform.forward.z* verticalTranslation* speed);
-		this.GetComponent<Rigidbody>().velocity += this.transform.right * horizontaltranslation * speed;
+		this.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x* verticalTranslation * this.speed, this.GetComponent<Rigidbody>().velocity.y, this.transform.forward.z* verticalTranslation* this.speed);
+		this.GetComponent<Rigidbody>().velocity += this.transform.right * horizontaltranslation * this.speed;
 		this.collider.transform.eulerAngles = new Vector3(0f, 0f, 0f);
 
 
@@ -98,14 +100,14 @@ public class Controller : MonoBehaviour {
 	}
 
 	void throwObject() {
-		this.currentObject.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x, this.transform.forward.y, this.transform.forward.z)*this.currentObject.weight;
+		this.currentObject.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x, this.transform.forward.y, this.transform.forward.z)*(this.MAX_WEIGHT - this.currentObject.weight);
 		releaseObject();
 	}
 
 	void releaseObject() {
 		this.hasObject = false;
 		this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y + 0.3f,this.transform.forward.z) * 1.0f;
-		this.currentObject.transform.SetParent(null);
+		this.currentObject.transform.SetParent(this.transform.parent);
 		this.speed = this.CONST_SPEED;
 		this.currentObject = null;
 	}
