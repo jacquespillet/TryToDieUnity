@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Book : Item {
-
 	// Use this for initialization
 	void Start () {
 		

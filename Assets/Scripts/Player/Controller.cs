@@ -28,7 +28,6 @@ public class Controller : MonoBehaviour {
 	}
 	
 	void Update () {
-		Debug.Log(this.speed);
 		// Get directionals pushed keys and move
 		float horizontaltranslation = Input.GetAxis("Horizontal");
 		float verticalTranslation =  -Input.GetAxis("Vertical");
