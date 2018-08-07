@@ -107,7 +107,7 @@ public class Controller : MonoBehaviour {
 	void releaseObject() {
 		this.hasObject = false;
 		this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y + 0.3f,this.transform.forward.z) * 1.0f;
-		this.currentObject.transform.SetParent(null);
+		this.currentObject.transform.SetParent(this.transform.parent);
 		this.speed = this.CONST_SPEED;
 		this.currentObject = null;
 	}
