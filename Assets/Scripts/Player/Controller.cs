@@ -58,7 +58,7 @@ public class Controller : MonoBehaviour {
 			checkCatchableObject();
 		} else {
 			// Make the current object follows the camera in a smoothie way
-			this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y,this.transform.forward.z) * 0.5f + this.transform.right * 0.2f;
+			this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y,this.transform.forward.z) * 0.5f + this.transform.right * 0.2f + new Vector3(0f, 0.4f, 0f);
 			this.currentObject.gameObject.transform.eulerAngles = 	this.currentObject.gameObject.transform.eulerAngles - this.rotation;
 			this.currentObject.gameObject.transform.localEulerAngles = new Vector3(0f, 90f, 90f);
 			if(Input.GetKeyDown(KeyCode.E)){
