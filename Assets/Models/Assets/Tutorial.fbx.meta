@@ -418,6 +418,18 @@ ModelImporter:
     100820: shelf4
     100822: Book
     100824: Shelfs
+    100826: Barreaux
+    100828: Barrieres
+    100830: Bras
+    100832: Dalle_secrete
+    100834: Echelle
+    100836: Grandes_barres
+    100838: Levier
+    100840: Pilier_plongeoir_gauche
+    100842: Pillier_plongeoir_droite
+    100844: Planche
+    100846: Plongeoir
+    100848: Socle
     400000: Big_Sign
     400002: pCone1
     400004: pCone10
@@ -831,6 +843,18 @@ ModelImporter:
     400820: shelf4
     400822: Book
     400824: Shelfs
+    400826: Barreaux
+    400828: Barrieres
+    400830: Bras
+    400832: Dalle_secrete
+    400834: Echelle
+    400836: Grandes_barres
+    400838: Levier
+    400840: Pilier_plongeoir_gauche
+    400842: Pillier_plongeoir_droite
+    400844: Planche
+    400846: Plongeoir
+    400848: Socle
     2100000: lambert1
     2300000: pCone1
     2300002: pCone10
@@ -1236,6 +1260,15 @@ ModelImporter:
     2300802: shelf3
     2300804: shelf4
     2300806: Book
+    2300808: Barreaux
+    2300810: Barrieres
+    2300812: Bras
+    2300814: Dalle_secrete
+    2300816: Grandes_barres
+    2300818: Pilier_plongeoir_gauche
+    2300820: Pillier_plongeoir_droite
+    2300822: Planche
+    2300824: Socle
     3300000: pCone1
     3300002: pCone10
     3300004: pCone11
@@ -1640,6 +1673,15 @@ ModelImporter:
     3300802: shelf3
     3300804: shelf4
     3300806: Book
+    3300808: Barreaux
+    3300810: Barrieres
+    3300812: Bras
+    3300814: Dalle_secrete
+    3300816: Grandes_barres
+    3300818: Pilier_plongeoir_gauche
+    3300820: Pillier_plongeoir_droite
+    3300822: Planche
+    3300824: Socle
     4300000: Room
     4300002: pCone1
     4300004: pCone2
@@ -2044,6 +2086,15 @@ ModelImporter:
     4300802: pCube366
     4300804: pCube367
     4300806: Book
+    4300808: Pilier_plongeoir_gauche
+    4300810: Pillier_plongeoir_droite
+    4300812: Planche
+    4300814: Barreaux
+    4300816: Grandes_barres
+    4300818: Barrieres
+    4300820: Dalle_secrete
+    4300822: Socle
+    4300824: Bras
   externalObjects: {}
   materials:
     importMaterials: 1
