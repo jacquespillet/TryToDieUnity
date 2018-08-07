@@ -44,7 +44,6 @@ public class Controller : MonoBehaviour {
 		} else if (this.transform.forward.y < -MAX_FORWARD_Y) {
 			this.transform.forward = new Vector3(this.transform.forward.x, -MAX_FORWARD_Y, this.transform.forward.z);
 		}
-		Debug.Log(this.GetComponent<Rigidbody>().velocity);
 
 
 		// Object management
@@ -58,7 +57,7 @@ public class Controller : MonoBehaviour {
 		}
 
 		if(Input.GetKeyDown(KeyCode.P)) {
-			this.transform.position = new Vector3(0f, 0f, 0f);
+			 Application.LoadLevel(Application.loadedLevel);
 		}
 	}
 
@@ -69,8 +68,6 @@ public class Controller : MonoBehaviour {
 				if(Input.GetKeyDown(KeyCode.Space) && !this.hasObject) {
 					this.hasObject = true;
 					this.currentObject = hit.transform.gameObject.GetComponent<Item>();
-					this.currentObject.gameObject.GetComponent<Rigidbody>().detectCollisions = false;
-
 					this.speed = 0.75f * this.CONST_SPEED;
 				}
 			}
@@ -78,14 +75,13 @@ public class Controller : MonoBehaviour {
 	}
 
 	void checkReleaseObject() {
-		this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y,this.transform.forward.z) * 0.5f + this.transform.right * 0.7f;
-		this.currentObject.gameObject.transform.eulerAngles = 	this.currentObject.gameObject.transform.eulerAngles - this.rotation;
-
+		this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y,this.transform.forward.z) * 0.5f + this.transform.right * 0.1f;
+		this.currentObject.transform.SetParent(this.transform);
+		this.currentObject.gameObject.transform.localEulerAngles = new Vector3(0f, 90f, 90f);
 		if(Input.GetKeyDown(KeyCode.Space)) {
 			this.hasObject = false;
-
+			this.currentObject.transform.SetParent(null);
 			this.speed = this.CONST_SPEED;
-			this.currentObject.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
 			this.currentObject = null;
 		}
 	}

@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 791370191}
   - component: {fileID: 791370193}
   - component: {fileID: 791370192}
+  - component: {fileID: 791370194}
   m_Layer: 0
   m_Name: pCube1
   m_TagString: Untagged
@@ -313,6 +314,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 791370190}
   m_Mesh: {fileID: 4300000, guid: a59287d887ab1094b9c4547af76caca9, type: 3}
+--- !u!64 &791370194
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 791370190}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 1
+  m_SkinWidth: 0.05
+  m_Mesh: {fileID: 4300000, guid: a59287d887ab1094b9c4547af76caca9, type: 3}
 --- !u!1 &1039212837
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +352,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1039212837}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: 1.09, z: 9.66}
+  m_LocalPosition: {x: 0.06, y: 1.09, z: -1.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1394932558}
@@ -451,6 +466,7 @@ GameObject:
   - component: {fileID: 1391747972}
   - component: {fileID: 1391747974}
   - component: {fileID: 1391747973}
+  - component: {fileID: 1391747975}
   m_Layer: 0
   m_Name: pCylinder1
   m_TagString: Untagged
@@ -510,6 +526,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1391747971}
+  m_Mesh: {fileID: 4300002, guid: a59287d887ab1094b9c4547af76caca9, type: 3}
+--- !u!64 &1391747975
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1391747971}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 1
+  m_SkinWidth: 0.03
   m_Mesh: {fileID: 4300002, guid: a59287d887ab1094b9c4547af76caca9, type: 3}
 --- !u!1 &1394932552
 GameObject:
@@ -607,7 +637,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1739714780}
   - component: {fileID: 1739714779}
-  - component: {fileID: 1739714782}
   - component: {fileID: 1739714781}
   m_Layer: 0
   m_Name: pickaxe
@@ -633,7 +662,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400004, guid: a59287d887ab1094b9c4547af76caca9, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1739714778}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.64, y: 0.8, z: -1.17}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
@@ -641,7 +670,7 @@ Transform:
   - {fileID: 1391747972}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1739714781
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -655,20 +684,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1739714782
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1739714778}
-  m_Material: {fileID: 13400000, guid: 850ec18934ed212468ea309ed2194a92, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.1043897, y: 8.133194, z: 1.88}
-  m_Center: {x: -3.0521607, y: 3.5665975, z: 0}
 --- !u!1 &1751124591
 GameObject:
   m_ObjectHideFlags: 0
