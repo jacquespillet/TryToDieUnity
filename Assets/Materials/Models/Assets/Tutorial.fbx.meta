@@ -416,6 +416,8 @@ ModelImporter:
     100816: shelf2
     100818: shelf3
     100820: shelf4
+    100822: Book
+    100824: Shelfs
     400000: Big_Sign
     400002: pCone1
     400004: pCone10
@@ -827,6 +829,8 @@ ModelImporter:
     400816: shelf2
     400818: shelf3
     400820: shelf4
+    400822: Book
+    400824: Shelfs
     2100000: lambert1
     2300000: pCone1
     2300002: pCone10
@@ -1231,6 +1235,7 @@ ModelImporter:
     2300800: shelf2
     2300802: shelf3
     2300804: shelf4
+    2300806: Book
     3300000: pCone1
     3300002: pCone10
     3300004: pCone11
@@ -1634,6 +1639,7 @@ ModelImporter:
     3300800: shelf2
     3300802: shelf3
     3300804: shelf4
+    3300806: Book
     4300000: Room
     4300002: pCone1
     4300004: pCone2
@@ -2037,6 +2043,7 @@ ModelImporter:
     4300800: pCube365
     4300802: pCube366
     4300804: pCube367
+    4300806: Book
   externalObjects: {}
   materials:
     importMaterials: 1
