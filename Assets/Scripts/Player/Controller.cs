@@ -6,7 +6,7 @@ public class Controller : MonoBehaviour {
 	// Test commit stan
 	// Mouse and keys
 	private float x, y;
-	public float MAX_FORWARD_Y = 0.80f;
+	public float MAX_FORWARD_Y = 0.90f;
 	public float CONST_SPEED = 3f;
 	public float CONST_JUMP = 3f;
 
@@ -71,11 +71,14 @@ public class Controller : MonoBehaviour {
 
 	void checkCatchableObject() {
 		RaycastHit hit;
-		if(Physics.Raycast(this.transform.position, this.transform.forward, out hit, 10f, 1)) {
+		Debug.DrawRay(this.transform.position, this.transform.forward * 2f, Color.green);
+		if(Physics.Raycast(this.transform.position, this.transform.forward * 2f, out hit,Mathf.Infinity, 256)) {
+			Debug.Log(hit.transform.gameObject.name);
 			if(hit.transform.gameObject.tag =="Catchable") {
 				if(Input.GetKeyDown(KeyCode.E) && !this.hasObject) {
 					this.hasObject = true;
 					this.currentObject = hit.transform.gameObject.GetComponent<Item>();
+					// this.currentObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 					this.speed = 0.75f * this.CONST_SPEED;
 				}
 			}
@@ -91,7 +94,9 @@ public class Controller : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.E)) {
 			this.hasObject = false;
+			this.currentObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 			this.currentObject.transform.SetParent(null);
+			this.currentObject.transform.localEulerAngles =new Vector3(90f, 0f, 0f);
 			this.speed = this.CONST_SPEED;
 			this.currentObject = null;
 		}
