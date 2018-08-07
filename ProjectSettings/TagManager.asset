@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Catchable
   - Death1
+  - Lever
+  - Lader
   layers:
   - Default
   - TransparentFX
