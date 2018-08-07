@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pickaxe : Item {
 	// Use this for initialization
 	void Start () {
+		this.initialScale = this.transform.localScale; 
 		this.weight = 5f;
 	}
 	
