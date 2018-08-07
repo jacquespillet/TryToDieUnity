@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.54438776, g: 0.50699246, b: 0.52424204, a: 1}
+  m_IndirectSpecularColor: {r: 0.5444145, g: 0.50700045, b: 0.5242461, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -88,7 +88,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -450,8 +449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_FORWARD_Y: 0.8
-  CONST_SPEED: 3
-  CONST_JUMP: 3
+  CONST_SPEED: 10
+  CONST_JUMP: 10
   collider: {fileID: 2111923240}
   wantedMode: 1
 --- !u!1 &1335034293 stripped
@@ -744,6 +743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41ffbf4d9a9ce245951aec0ff542b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weight: 0
 --- !u!4 &1739714780
 Transform:
   m_ObjectHideFlags: 0
