@@ -9,8 +9,10 @@ public class Controller : MonoBehaviour {
 	public float MAX_FORWARD_Y = 0.80f;
 	public float CONST_SPEED = 3f;
 	public float CONST_JUMP = 3f;
+
 	private Vector3 rotation;
 	private int numDeath;
+	public CapsuleCollider collider;
 	// hold and object
 	private bool hasObject = false;
 	private Item currentObject;
@@ -31,7 +33,7 @@ public class Controller : MonoBehaviour {
 		
 		this.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x* verticalTranslation * speed, this.GetComponent<Rigidbody>().velocity.y, this.transform.forward.z* verticalTranslation* speed);
 		this.GetComponent<Rigidbody>().velocity += this.transform.right * horizontaltranslation * speed;
-		
+		this.collider.transform.eulerAngles = new Vector3(0f, 0f, 0f);
 
 
 		// Get mouse movment and rotate
@@ -44,8 +46,8 @@ public class Controller : MonoBehaviour {
 		} else if (this.transform.forward.y < -MAX_FORWARD_Y) {
 			this.transform.forward = new Vector3(this.transform.forward.x, -MAX_FORWARD_Y, this.transform.forward.z);
 		}
-
-
+		Debug.Log(this.GetComponent<Rigidbody>().velocity);
+		
 
 		// Object management
 		if(!this.hasObject) {
