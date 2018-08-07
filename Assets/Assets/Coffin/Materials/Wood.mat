@@ -87,7 +87,7 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 0.261
+      second: 0.571
     - first:
         name: _GlossyReflections
       second: 1
@@ -102,7 +102,7 @@ Material:
       second: 1
     - first:
         name: _Parallax
-      second: 0.02
+      second: 0.0406
     - first:
         name: _SmoothnessTextureChannel
       second: 0
