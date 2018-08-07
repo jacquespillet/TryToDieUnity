@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour {
 	private float x, y;
 	public float MAX_FORWARD_Y = 0.80f;
 	public float CONST_SPEED = 3f;
+	public float CONST_JUMP = 3f;
 	private Vector3 rotation;
 	private int numDeath;
 	// hold and object
@@ -56,8 +57,14 @@ public class Controller : MonoBehaviour {
 			}
 		}
 
+		// Respawn
 		if(Input.GetKeyDown(KeyCode.P)) {
 			this.transform.position = new Vector3(0f, 0f, 0f);
+		}
+
+		// Jump
+		if (Input.GetKeyDown(KeyCode.Space)){
+			this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x, this.GetComponent<Rigidbody>().velocity.y + this.CONST_JUMP, this.GetComponent<Rigidbody>().velocity.z);
 		}
 	}
 
@@ -65,7 +72,7 @@ public class Controller : MonoBehaviour {
 		RaycastHit hit;
 		if(Physics.Raycast(this.transform.position, this.transform.forward, out hit, 10f, 1)) {
 			if(hit.transform.gameObject.tag =="Catchable") {
-				if(Input.GetKeyDown(KeyCode.Space) && !this.hasObject) {
+				if(Input.GetKeyDown(KeyCode.E) && !this.hasObject) {
 					this.hasObject = true;
 					this.currentObject = hit.transform.gameObject.GetComponent<Item>();
 					this.currentObject.gameObject.GetComponent<Rigidbody>().detectCollisions = false;
@@ -80,7 +87,7 @@ public class Controller : MonoBehaviour {
 		this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y,this.transform.forward.z) * 0.5f + this.transform.right * 0.7f;
 		this.currentObject.gameObject.transform.eulerAngles = 	this.currentObject.gameObject.transform.eulerAngles - this.rotation;
 
-		if(Input.GetKeyDown(KeyCode.Space)) {
+		if(Input.GetKeyDown(KeyCode.E)) {
 			this.hasObject = false;
 
 			this.speed = this.CONST_SPEED;
