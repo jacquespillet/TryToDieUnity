@@ -33,6 +33,7 @@ public class Controller : MonoBehaviour {
 		this.audioSource = this.GetComponent<AudioSource>();
 		this.willDie = false;
 		audioSource.Play();
+		audioSource.volume = 0f;
 	}
 	
 	void Update () {
@@ -42,11 +43,18 @@ public class Controller : MonoBehaviour {
 		this.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x* verticalTranslation * this.speed, this.GetComponent<Rigidbody>().velocity.y, this.transform.forward.z* verticalTranslation* this.speed);
 		this.GetComponent<Rigidbody>().velocity += this.transform.right * horizontaltranslation * this.speed;
 		this.collider.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-
+		
 
 		// Get mouse movment and rotate
 		this.y = Input.GetAxis("Mouse X");
 		this.x = Input.GetAxis("Mouse Y");
+		
+		if(this.GetComponent<Rigidbody>().velocity != new Vector3(0f, 0f, 0f)) {
+			audioSource.volume = 0.25f;
+		} else {
+			audioSource.volume = 0f;
+		}
+
 		this.rotation = new Vector3(x, y * -1, 0 );
 		transform.eulerAngles = transform.eulerAngles - this.rotation;
 		if(this.transform.forward.y > MAX_FORWARD_Y) {
