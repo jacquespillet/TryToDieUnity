@@ -58,7 +58,8 @@ public class Controller : MonoBehaviour {
 			checkCatchableObject();
 		} else {
 			// Make the current object follows the camera in a smoothie way
-			this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y,this.transform.forward.z) * 0.5f + this.transform.right * 0.2f + new Vector3(0f, 0.4f, 0f);
+			this.currentObject.gameObject.transform.position = this.transform.position + this.transform.forward * 0.5f + this.transform.right * 0.2f;
+			
 			this.currentObject.gameObject.transform.eulerAngles = 	this.currentObject.gameObject.transform.eulerAngles - this.rotation;
 			this.currentObject.gameObject.transform.localEulerAngles = new Vector3(0f, 90f, 90f);
 			if(Input.GetKeyDown(KeyCode.E)){
@@ -71,6 +72,7 @@ public class Controller : MonoBehaviour {
 			if (Input.GetMouseButtonDown(0)) {
 				this.currentObject.beUsed();
 			}
+			checkPainting();
 		}
 
 		// Respawn
@@ -89,7 +91,6 @@ public class Controller : MonoBehaviour {
 		RaycastHit hit;
 		// If the raycast find an object with the tag catchatchable
 		if(Physics.Raycast(this.transform.position, this.transform.forward, out hit, 10f, 256)) {
-			Debug.Log(hit.transform.gameObject);
 			if(hit.transform.gameObject.tag == "Lader" && Input.GetAxis("Vertical") < 0 && hit.distance < 1f) {
 				this.transform.GetComponent<Rigidbody>().velocity = new Vector3(0f, 2.5f, 0f);
 
@@ -110,12 +111,28 @@ public class Controller : MonoBehaviour {
 					this.divingSystem.launch();
 				}
 			}
-			if(hit.transform.gameObject.tag == "painting") {
-				
-			}
 		}
 	}
 
+	void checkPainting() {
+		RaycastHit hit2;
+		if(Physics.Raycast(this.transform.position + new Vector3(0f, 0.5f, 0f), this.transform.forward, out hit2, 10f, 256)) {
+			if(hit2.transform.gameObject.tag == "painting") {
+				if(Input.GetMouseButton(0)) {
+					if(hit2.transform.childCount==0) {
+						this.hasObject = false;
+						this.currentObject.gameObject.transform.position = hit2.transform.position + hit2.transform.right * 0.1f;
+						this.currentObject.transform.forward = hit2.transform.forward;
+						this.currentObject.GetComponent<Rigidbody>().isKinematic = true;
+						this.currentObject.transform.SetParent(hit2.transform);
+						this.speed = this.CONST_SPEED;
+						this.currentObject = null;
+					}
+				}
+				// hit2.transform.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+			}
+		}
+	}
 
 	void throwObject() {
 		this.currentObject.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x, this.transform.forward.y, this.transform.forward.z)*(this.MAX_WEIGHT - this.currentObject.weight);
@@ -126,6 +143,7 @@ public class Controller : MonoBehaviour {
 		this.hasObject = false;
 		this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y + 0.3f,this.transform.forward.z) * 1.0f;
 		this.currentObject.transform.SetParent(this.transform.parent);
+		this.currentObject.GetComponent<Rigidbody>().isKinematic = false;
 		this.speed = this.CONST_SPEED;
 		this.currentObject = null;
 	}

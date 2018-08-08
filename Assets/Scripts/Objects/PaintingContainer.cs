@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Painting : Item {
+public class PaintingContainer : MonoBehaviour {
 	public int id;
 	// Use this for initialization
 	void Start () {
@@ -13,9 +13,4 @@ public class Painting : Item {
 	void Update () {
 		
 	}
-
-	public override void beUsed() {
-		Debug.Log("c'est moi le book");
-	}
-
 }
