@@ -21,7 +21,7 @@ public class Floor : MonoBehaviour {
 	void OnCollisionEnter(Collision other)
 	{
 		if(other.gameObject.GetComponent<Controller>() != null && other.gameObject.GetComponent<Controller>().willDie){
-			other.gameObject.GetComponent<Controller>().die();
+			StartCoroutine(other.gameObject.GetComponent<Controller>().die());
 		}
 	}
 }
