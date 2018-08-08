@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +19,7 @@ public class DivingSystem : MonoBehaviour {
 	}
 
 	private bool checkPaintings() {
+        Debug.Log(paintings.Count);
 		for(int i=0; i< paintings.Count; i++) {
 			if(paintings[i].gameObject.transform.childCount ==0) {
 				return false;
