@@ -6,6 +6,7 @@ public class Controller : MonoBehaviour {
 	// Test commit stan
 	// Mouse and keys
 	private float x, y;
+	private bool dead;
 	public bool willDie;
 	public GameObject coffin;
 	public float MAX_FORWARD_Y = 0.80f;
@@ -28,6 +29,7 @@ public class Controller : MonoBehaviour {
 	private bool isWalking;
 	void Start () {
 		Cursor.lockState = wantedMode;
+		this.dead = false;
 		this.speed = this.CONST_SPEED;
 		this.divingSystem = this.GetComponent<DivingSystem>();
 		AudioSource[] audioSources = this.GetComponents<AudioSource>();
@@ -37,69 +39,71 @@ public class Controller : MonoBehaviour {
 	}
 	
 	void Update () {
-		// Get directionals pushed keys and move
-		float horizontaltranslation = Input.GetAxis("Horizontal");
-		float verticalTranslation =  -Input.GetAxis("Vertical");
-		this.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x* verticalTranslation * this.speed, this.GetComponent<Rigidbody>().velocity.y, this.transform.forward.z* verticalTranslation* this.speed);
-		this.GetComponent<Rigidbody>().velocity += this.transform.right * horizontaltranslation * this.speed;
-		this.collider.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-		
-
-		// Get mouse movment and rotate
-		this.y = Input.GetAxis("Mouse X");
-		this.x = Input.GetAxis("Mouse Y");
-		if((horizontaltranslation != 0f || verticalTranslation != 0f) && !this.isWalking) {
-			this.audioSourceWalk.Play();
-			this.isWalking = true;
-		} else if((horizontaltranslation== 0 && verticalTranslation == 0)) {
-			this.isWalking = false;
-			this.audioSourceWalk.Pause();
-		}
-		this.rotation = new Vector3(x, y * -1, 0 );
-		transform.eulerAngles = transform.eulerAngles - this.rotation;
-		if(this.transform.forward.y > MAX_FORWARD_Y) {
-			this.transform.forward = new Vector3(this.transform.forward.x, MAX_FORWARD_Y, this.transform.forward.z);
-		} else if (this.transform.forward.y < -MAX_FORWARD_Y) {
-			this.transform.forward = new Vector3(this.transform.forward.x, -MAX_FORWARD_Y, this.transform.forward.z);
-
-		}
-
-		// Object management
-		if(!this.hasObject) {
-			// Check if there's an object to catch
-			checkCatchableObject();
-		} else {
-			// Make the current object follows the camera in a smoothie way
-			this.currentObject.gameObject.transform.position = this.transform.position + this.transform.forward * 0.5f + this.transform.right * 0.2f;
+		if (!this.dead){
+			// Get directionals pushed keys and move
+			float horizontaltranslation = Input.GetAxis("Horizontal");
+			float verticalTranslation =  -Input.GetAxis("Vertical");
+			this.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x* verticalTranslation * this.speed, this.GetComponent<Rigidbody>().velocity.y, this.transform.forward.z* verticalTranslation* this.speed);
+			this.GetComponent<Rigidbody>().velocity += this.transform.right * horizontaltranslation * this.speed;
+			this.collider.transform.eulerAngles = new Vector3(0f, 0f, 0f);
 			
-			this.currentObject.gameObject.transform.eulerAngles = 	this.currentObject.gameObject.transform.eulerAngles - this.rotation;
-			this.currentObject.gameObject.transform.localEulerAngles = new Vector3(0f, 90f, 90f);
-			if(Input.GetKeyDown(KeyCode.E)){
-				// Release the object if E is pressed
-				releaseObject();
-			} else if (Input.GetKeyDown(KeyCode.F)){
-				//Throw the object if F is pressed
-				throwObject();
+
+			// Get mouse movment and rotate
+			this.y = Input.GetAxis("Mouse X");
+			this.x = Input.GetAxis("Mouse Y");
+			if((horizontaltranslation != 0f || verticalTranslation != 0f) && !this.isWalking) {
+				this.audioSourceWalk.Play();
+				this.isWalking = true;
+			} else if((horizontaltranslation== 0 && verticalTranslation == 0)) {
+				this.isWalking = false;
+				this.audioSourceWalk.Pause();
 			}
-			if (Input.GetMouseButtonDown(0)) {
-				this.currentObject.beUsed();
+			this.rotation = new Vector3(x, y * -1, 0 );
+			transform.eulerAngles = transform.eulerAngles - this.rotation;
+			if(this.transform.forward.y > MAX_FORWARD_Y) {
+				this.transform.forward = new Vector3(this.transform.forward.x, MAX_FORWARD_Y, this.transform.forward.z);
+			} else if (this.transform.forward.y < -MAX_FORWARD_Y) {
+				this.transform.forward = new Vector3(this.transform.forward.x, -MAX_FORWARD_Y, this.transform.forward.z);
+
 			}
-			checkPainting();
-		}
 
-		// Respawn
-		if(Input.GetKeyDown(KeyCode.P)) {
-			 Application.LoadLevel(Application.loadedLevel);
-		}
+			// Object management
+			if(!this.hasObject) {
+				// Check if there's an object to catch
+				checkCatchableObject();
+			} else {
+				// Make the current object follows the camera in a smoothie way
+				this.currentObject.gameObject.transform.position = this.transform.position + this.transform.forward * 0.5f + this.transform.right * 0.2f;
+				
+				this.currentObject.gameObject.transform.eulerAngles = 	this.currentObject.gameObject.transform.eulerAngles - this.rotation;
+				this.currentObject.gameObject.transform.localEulerAngles = new Vector3(0f, 90f, 90f);
+				if(Input.GetKeyDown(KeyCode.E)){
+					// Release the object if E is pressed
+					releaseObject();
+				} else if (Input.GetKeyDown(KeyCode.F)){
+					//Throw the object if F is pressed
+					throwObject();
+				}
+				if (Input.GetMouseButtonDown(0)) {
+					this.currentObject.beUsed();
+				}
+				checkPainting();
+			}
 
-		// Jump
-		if (Input.GetKeyDown(KeyCode.Space)){
-			this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x, this.GetComponent<Rigidbody>().velocity.y + this.CONST_JUMP, this.GetComponent<Rigidbody>().velocity.z);
+			// Respawn
+			if(Input.GetKeyDown(KeyCode.P)) {
+				Application.LoadLevel(Application.loadedLevel);
+			}
 
-		}
+			// Jump
+			if (Input.GetKeyDown(KeyCode.Space)){
+				this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x, this.GetComponent<Rigidbody>().velocity.y + this.CONST_JUMP, this.GetComponent<Rigidbody>().velocity.z);
 
-		if (this.gameObject.GetComponent<Rigidbody>().velocity.y < -5f){
-			this.willDie = true;
+			}
+
+			if (this.gameObject.GetComponent<Rigidbody>().velocity.y < -5f){
+				this.willDie = true;
+			}
 		}
 	}
 
@@ -175,9 +179,14 @@ public class Controller : MonoBehaviour {
 
 	public void die() {
 		this.willDie = false;
+		this.dead = true;
+		this.audioSourceWalk.Stop();
+		this.isWalking = false;
+		this.transform.eulerAngles = new Vector3(this.transform.rotation.x, this.transform.rotation.y + 180, this.transform.rotation.z + 90f);
 		this.numDeath++;
+		this.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
 		instantiateNewCoffin();
-		this.transform.position = new Vector3(0f, 1f, 0f);
+		//this.transform.position = new Vector3(0f, 1f, 0f);
 	}
 
 	public void instantiateNewCoffin(){
