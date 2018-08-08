@@ -35,7 +35,7 @@ public class Immolator : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		Debug.Log(other);
+		//Debug.Log(other);
 		if(other.gameObject.GetComponent<Book>() != null) {
 			this.counterExplosive++;
 			Destroy(other.gameObject);
