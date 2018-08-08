@@ -96,10 +96,10 @@ public class Controller : MonoBehaviour {
 			}
 
 			// Jump
-			if (Input.GetKeyDown(KeyCode.Space)){
+			/*if (Input.GetKeyDown(KeyCode.Space)){
 				this.GetComponent<Rigidbody>().velocity = new Vector3(this.GetComponent<Rigidbody>().velocity.x, this.GetComponent<Rigidbody>().velocity.y + this.CONST_JUMP, this.GetComponent<Rigidbody>().velocity.z);
 
-			}
+			}*/
 
 			if (this.gameObject.GetComponent<Rigidbody>().velocity.y < -5f){
 				this.willDie = true;
@@ -177,7 +177,7 @@ public class Controller : MonoBehaviour {
 		}
 	}
 
-	public void die() {
+	public IEnumerator die() {
 		this.willDie = false;
 		this.dead = true;
 		this.audioSourceWalk.Stop();
@@ -186,7 +186,16 @@ public class Controller : MonoBehaviour {
 		this.numDeath++;
 		this.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
 		instantiateNewCoffin();
-		//this.transform.position = new Vector3(0f, 1f, 0f);
+		yield return new WaitForSeconds(3);
+		
+		this.reborn();
+	}
+
+	public void reborn(){
+		this.transform.position = new Vector3(0f, 1f, 0f);
+		this.dead = false;
+		this.transform.eulerAngles = new Vector3(0f,0f,0f);
+		this.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
 	}
 
 	public void instantiateNewCoffin(){

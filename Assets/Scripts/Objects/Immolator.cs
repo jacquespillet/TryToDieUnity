@@ -55,7 +55,7 @@ public class Immolator : MonoBehaviour {
 				system.startSize++;
 			}
 		} else if (other.gameObject.GetComponent<Controller>() != null) {
-			other.gameObject.GetComponent<Controller>().die();
+			StartCoroutine(other.gameObject.GetComponent<Controller>().die());
 			for(int i=0; i<this.particles.transform.childCount; i++) {
 				ParticleSystem system = this.particles.transform.GetChild(i).GetComponent<ParticleSystem>();
 				system.startSize = 0;
