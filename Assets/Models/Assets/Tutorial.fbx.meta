@@ -430,6 +430,32 @@ ModelImporter:
     100844: Planche
     100846: Plongeoir
     100848: Socle
+    100850: Dying_Pool
+    100852: Library_Walls
+    100854: Paint
+    100856: Paint1
+    100858: Paint10
+    100860: Paint11
+    100862: Paint12
+    100864: Paint13
+    100866: Paint14
+    100868: Paint15
+    100870: Paint2
+    100872: Paint3
+    100874: Paint4
+    100876: Paint5
+    100878: Paint6
+    100880: Paint7
+    100882: Paint8
+    100884: Paint9
+    100886: Paints
+    100888: Porte_droite
+    100890: Shelfs_1
+    100892: Shelfs_2
+    100894: Shelfs_3
+    100896: Shelfs_4
+    100898: Shelfs_5
+    100900: Waiting_Room
     400000: Big_Sign
     400002: pCone1
     400004: pCone10
@@ -855,7 +881,43 @@ ModelImporter:
     400844: Planche
     400846: Plongeoir
     400848: Socle
+    400850: Dying_Pool
+    400852: Library_Walls
+    400854: Paint
+    400856: Paint1
+    400858: Paint10
+    400860: Paint11
+    400862: Paint12
+    400864: Paint13
+    400866: Paint14
+    400868: Paint15
+    400870: Paint2
+    400872: Paint3
+    400874: Paint4
+    400876: Paint5
+    400878: Paint6
+    400880: Paint7
+    400882: Paint8
+    400884: Paint9
+    400886: Paints
+    400888: Porte_droite
+    400890: Shelfs_1
+    400892: Shelfs_2
+    400894: Shelfs_3
+    400896: Shelfs_4
+    400898: Shelfs_5
+    400900: Waiting_Room
     2100000: lambert1
+    2100002: Murs_Biblio
+    2100004: Biblio
+    2100006: Pool
+    2100008: Attente
+    2100010: Peintures
+    2100012: Immo
+    2100014: Planches
+    2100016: Default_Material
+    2100018: Plongeoir_Mort
+    2100020: Dalle
     2300000: pCone1
     2300002: pCone10
     2300004: pCone11
@@ -1269,6 +1331,27 @@ ModelImporter:
     2300820: Pillier_plongeoir_droite
     2300822: Planche
     2300824: Socle
+    2300826: Dying_Pool
+    2300828: Library
+    2300830: Library_Walls
+    2300832: Paint
+    2300834: Paint1
+    2300836: Paint10
+    2300838: Paint11
+    2300840: Paint12
+    2300842: Paint13
+    2300844: Paint14
+    2300846: Paint15
+    2300848: Paint2
+    2300850: Paint3
+    2300852: Paint4
+    2300854: Paint5
+    2300856: Paint6
+    2300858: Paint7
+    2300860: Paint8
+    2300862: Paint9
+    2300864: Porte_droite
+    2300866: Waiting_Room
     3300000: pCone1
     3300002: pCone10
     3300004: pCone11
@@ -1682,6 +1765,27 @@ ModelImporter:
     3300820: Pillier_plongeoir_droite
     3300822: Planche
     3300824: Socle
+    3300826: Dying_Pool
+    3300828: Library
+    3300830: Library_Walls
+    3300832: Paint
+    3300834: Paint1
+    3300836: Paint10
+    3300838: Paint11
+    3300840: Paint12
+    3300842: Paint13
+    3300844: Paint14
+    3300846: Paint15
+    3300848: Paint2
+    3300850: Paint3
+    3300852: Paint4
+    3300854: Paint5
+    3300856: Paint6
+    3300858: Paint7
+    3300860: Paint8
+    3300862: Paint9
+    3300864: Porte_droite
+    3300866: Waiting_Room
     4300000: Room
     4300002: pCone1
     4300004: pCone2
@@ -2095,6 +2199,27 @@ ModelImporter:
     4300820: Dalle_secrete
     4300822: Socle
     4300824: Bras
+    4300826: Library_Walls
+    4300828: Library
+    4300830: Dying_Pool
+    4300832: Waiting_Room
+    4300834: Paint
+    4300836: Paint1
+    4300838: Paint2
+    4300840: Paint3
+    4300842: Paint4
+    4300844: Paint5
+    4300846: Paint6
+    4300848: Paint7
+    4300850: Paint8
+    4300852: Paint9
+    4300854: Paint10
+    4300856: Paint11
+    4300858: Paint12
+    4300860: Paint13
+    4300862: Paint14
+    4300864: Paint15
+    4300866: Porte_droite
   externalObjects: {}
   materials:
     importMaterials: 1
