@@ -23,13 +23,16 @@ public class Controller : MonoBehaviour {
 
 	// User speed
 	private float speed;
+	private AudioSource audioSource;
 	public CursorLockMode wantedMode;
 
 	void Start () {
 		Cursor.lockState = wantedMode;
 		this.speed = this.CONST_SPEED;
 		this.divingSystem = this.GetComponent<DivingSystem>();
+		this.audioSource = this.GetComponent<AudioSource>();
 		this.willDie = false;
+		audioSource.Play();
 	}
 	
 	void Update () {

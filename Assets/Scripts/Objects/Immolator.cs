@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Immolator : MonoBehaviour {
+	public AudioClip doorsOpen;
 	public GameObject particles;
 	private int counterExplosive;
 	public int CONST_MAX_COUNTER; 
 	private float CONST_TIMER = 20f;
 	private float timer;
+	private AudioSource audioSource;
 	// Use this for initialization
 	void Start () {
+		this.audioSource = this.GetComponent<AudioSource>();
 		this.counterExplosive = 0;
 		this.timer = this.CONST_TIMER;
 		this.CONST_MAX_COUNTER = 1;
@@ -30,6 +33,7 @@ public class Immolator : MonoBehaviour {
 			this.transform.GetChild(1).GetComponent<Animator>().SetTrigger("isFinish");
 			this.transform.GetChild(2).GetComponent<Animator>().SetTrigger("isFinish");
 			this.counterExplosive = 0;
+			this.audioSource.PlayOneShot(doorsOpen);
 		}			
 	}
 
@@ -40,6 +44,7 @@ public class Immolator : MonoBehaviour {
 			this.counterExplosive++;
 			Destroy(other.gameObject);
 			this.timer = this.CONST_TIMER;
+			this.audioSource.Play();
 			for(int i=0; i<this.particles.transform.childCount; i++) {
 				ParticleSystem system = this.particles.transform.GetChild(i).GetComponent<ParticleSystem>();
 				system.startSize++;
