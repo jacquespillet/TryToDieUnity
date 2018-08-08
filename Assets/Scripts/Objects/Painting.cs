@@ -15,7 +15,6 @@ public class Painting : Item {
 	}
 
 	public override void beUsed() {
-		Debug.Log("c'est moi le book");
 	}
 
 }
