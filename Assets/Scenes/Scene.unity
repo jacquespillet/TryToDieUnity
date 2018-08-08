@@ -20734,7 +20734,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 377972200}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.076252624, y: 0.10334383, z: 0.08036014}
@@ -29143,6 +29143,7 @@ Transform:
   - {fileID: 1204907778}
   - {fileID: 2121658734}
   - {fileID: 2084436699}
+  - {fileID: 1634770511}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -57742,7 +57743,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1039212837}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.012, y: 0.070995085, z: -1.831}
+  m_LocalPosition: {x: 0.012, y: 0.070995085, z: 0.18}
   m_LocalScale: {x: 0.07099509, y: 0.070995085, z: 0.070995085}
   m_Children:
   - {fileID: 1394932558}
@@ -57789,25 +57790,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d365260489a643499929617f70ccb1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coffin: {fileID: 0}
   MAX_FORWARD_Y: 0.8
   CONST_SPEED: 3
   MAX_WEIGHT: 10
   CONST_JUMP: 3
   collider: {fileID: 2111923240}
   wantedMode: 1
---- !u!136 &1039212842
-CapsuleCollider:
+--- !u!65 &1039212842
+BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1039212837}
-  m_Material: {fileID: 13400000, guid: 850ec18934ed212468ea309ed2194a92, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.25
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.38663936, z: 0.5}
+  m_Center: {x: 0, y: -0.30668062, z: 0}
 --- !u!1001 &1040655985
 Prefab:
   m_ObjectHideFlags: 0
@@ -64867,7 +64868,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1204907777}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.238, z: -1.6735187}
+  m_LocalPosition: {x: 0, y: -0.253, z: -1.6735187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 809542653}
@@ -83214,6 +83215,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &1518770505
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 529226884}
+    m_Modifications:
+    - target: {fileID: 4336312050844718, guid: 4638485f4e1764a9a93d939f3181e109, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336312050844718, guid: 4638485f4e1764a9a93d939f3181e109, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336312050844718, guid: 4638485f4e1764a9a93d939f3181e109, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336312050844718, guid: 4638485f4e1764a9a93d939f3181e109, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336312050844718, guid: 4638485f4e1764a9a93d939f3181e109, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336312050844718, guid: 4638485f4e1764a9a93d939f3181e109, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336312050844718, guid: 4638485f4e1764a9a93d939f3181e109, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336312050844718, guid: 4638485f4e1764a9a93d939f3181e109, type: 2}
+      propertyPath: m_RootOrder
+      value: 928
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4638485f4e1764a9a93d939f3181e109, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1519546805
 Prefab:
   m_ObjectHideFlags: 0
@@ -89552,6 +89595,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!4 &1634770511 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4336312050844718, guid: 4638485f4e1764a9a93d939f3181e109,
+    type: 2}
+  m_PrefabInternal: {fileID: 1518770505}
 --- !u!1001 &1635037555
 Prefab:
   m_ObjectHideFlags: 0
@@ -112537,7 +112585,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2111923238}
   m_Material: {fileID: 13400000, guid: 850ec18934ed212468ea309ed2194a92, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.25
   m_Height: 1
   m_Direction: 1

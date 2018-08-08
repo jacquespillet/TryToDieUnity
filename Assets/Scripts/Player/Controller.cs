@@ -6,6 +6,7 @@ public class Controller : MonoBehaviour {
 	// Test commit stan
 	// Mouse and keys
 	private float x, y;
+	public GameObject coffin;
 	public float MAX_FORWARD_Y = 0.80f;
 	public float CONST_SPEED = 10f;
 	public float MAX_WEIGHT = 10f;
@@ -57,7 +58,7 @@ public class Controller : MonoBehaviour {
 			checkCatchableObject();
 		} else {
 			// Make the current object follows the camera in a smoothie way
-			this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y,this.transform.forward.z) * 0.5f + this.transform.right * 0.2f;
+			this.currentObject.gameObject.transform.position = this.transform.position + new Vector3(this.transform.forward.x,this.transform.forward.y,this.transform.forward.z) * 0.5f + this.transform.right * 0.2f + new Vector3(0f, 0.4f, 0f);
 			this.currentObject.gameObject.transform.eulerAngles = 	this.currentObject.gameObject.transform.eulerAngles - this.rotation;
 			this.currentObject.gameObject.transform.localEulerAngles = new Vector3(0f, 90f, 90f);
 			if(Input.GetKeyDown(KeyCode.E)){
@@ -89,8 +90,9 @@ public class Controller : MonoBehaviour {
 		// If the raycast find an object with the tag catchatchable
 		if(Physics.Raycast(this.transform.position, this.transform.forward, out hit, 10f, 256)) {
 			Debug.Log(hit.transform.gameObject);
-			if(hit.transform.gameObject.tag == "Lader" && Input.GetAxis("Vertical") < 0) {
+			if(hit.transform.gameObject.tag == "Lader" && Input.GetAxis("Vertical") < 0 && hit.distance < 1f) {
 				this.transform.GetComponent<Rigidbody>().velocity = new Vector3(0f, 2.5f, 0f);
+
 				//Mettre le collider de l'échelle trigger et garder l'autre collider
 			}
 			if(hit.transform.gameObject.tag == "Catchable") {
@@ -107,6 +109,9 @@ public class Controller : MonoBehaviour {
 					hit.transform.gameObject.GetComponent<Animator>().SetTrigger("isPulled");
 					this.divingSystem.launch();
 				}
+			}
+			if(hit.transform.gameObject.tag == "painting") {
+				
 			}
 		}
 	}
@@ -134,6 +139,7 @@ public class Controller : MonoBehaviour {
 
 	public void die() {
 		this.numDeath++;
+		Instantiate(this.coffin, new Vector3(2.0f, 1f, 2.0f), Quaternion.identity);
 		this.transform.position = new Vector3(0f, 1f, 0f);
 	}
 }
