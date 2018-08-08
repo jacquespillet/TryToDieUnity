@@ -23,17 +23,17 @@ public class Controller : MonoBehaviour {
 
 	// User speed
 	private float speed;
-	private AudioSource audioSource;
+	private AudioSource audioSourceWalk, audioSourceSwoosh;
 	public CursorLockMode wantedMode;
-
+	private bool isWalking;
 	void Start () {
 		Cursor.lockState = wantedMode;
 		this.speed = this.CONST_SPEED;
 		this.divingSystem = this.GetComponent<DivingSystem>();
-		this.audioSource = this.GetComponent<AudioSource>();
+		AudioSource[] audioSources = this.GetComponents<AudioSource>();
+		this.audioSourceWalk = audioSources[0];
+		this.audioSourceSwoosh = audioSources[1];
 		this.willDie = false;
-		audioSource.Play();
-		audioSource.volume = 0f;
 	}
 	
 	void Update () {
@@ -48,13 +48,13 @@ public class Controller : MonoBehaviour {
 		// Get mouse movment and rotate
 		this.y = Input.GetAxis("Mouse X");
 		this.x = Input.GetAxis("Mouse Y");
-		
-		if(this.GetComponent<Rigidbody>().velocity != new Vector3(0f, 0f, 0f)) {
-			audioSource.volume = 0.25f;
-		} else {
-			audioSource.volume = 0f;
+		if((horizontaltranslation != 0f || verticalTranslation != 0f) && !this.isWalking) {
+			this.audioSourceWalk.Play();
+			this.isWalking = true;
+		} else if((horizontaltranslation== 0 && verticalTranslation == 0)) {
+			this.isWalking = false;
+			this.audioSourceWalk.Pause();
 		}
-
 		this.rotation = new Vector3(x, y * -1, 0 );
 		transform.eulerAngles = transform.eulerAngles - this.rotation;
 		if(this.transform.forward.y > MAX_FORWARD_Y) {
@@ -152,6 +152,7 @@ public class Controller : MonoBehaviour {
 	}
 
 	void throwObject() {
+		this.audioSourceSwoosh.Play();
 		this.currentObject.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(this.transform.forward.x, this.transform.forward.y, this.transform.forward.z)*(this.MAX_WEIGHT - this.currentObject.weight);
 		releaseObject();
 	}
